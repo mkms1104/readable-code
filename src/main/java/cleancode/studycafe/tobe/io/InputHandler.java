@@ -29,12 +29,22 @@ public class InputHandler {
     public StudyCafePass getSelectPass(List<StudyCafePass> passes) {
         String userInput = SCANNER.nextLine();
         int selectedIndex = Integer.parseInt(userInput) - 1;
+        if (selectedIndex < 0 || selectedIndex >= passes.size()) {
+            throw new AppException("잘못된 입력입니다.");
+        }
+
         return passes.get(selectedIndex);
     }
 
     public boolean getLockerSelection() {
         String userInput = SCANNER.nextLine();
-        return "1".equals(userInput);
+
+        if ("1".equals(userInput)) {
+            return true;
+        } else if ("2".equals(userInput)) {
+            return false;
+        }
+        throw new AppException("잘못된 입력입니다.");
     }
 
 }

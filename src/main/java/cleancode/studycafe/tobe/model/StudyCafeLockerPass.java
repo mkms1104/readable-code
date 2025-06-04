@@ -1,19 +1,21 @@
 package cleancode.studycafe.tobe.model;
 
+import java.util.Objects;
+
+import cleancode.studycafe.tobe.pass.Pass;
+
 public class StudyCafeLockerPass {
 
     private final StudyCafePassType passType;
-    private final int duration;
-    private final int price;
+    private final Pass pass;
 
-    private StudyCafeLockerPass(StudyCafePassType passType, int duration, int price) {
+    private StudyCafeLockerPass(StudyCafePassType passType, Pass pass) {
         this.passType = passType;
-        this.duration = duration;
-        this.price = price;
+        this.pass = pass;
     }
 
-    public static StudyCafeLockerPass of(StudyCafePassType passType, int duration, int price) {
-        return new StudyCafeLockerPass(passType, duration, price);
+    public static StudyCafeLockerPass of(StudyCafePassType passType, Pass pass) {
+        return new StudyCafeLockerPass(passType, pass);
     }
 
     public StudyCafePassType getPassType() {
@@ -21,24 +23,31 @@ public class StudyCafeLockerPass {
     }
 
     public int getDuration() {
-        return duration;
+        return pass.getDuration();
     }
 
     public int getPrice() {
-        return price;
+        return pass.getPrice();
     }
 
     public String display() {
-        if (passType == StudyCafePassType.HOURLY) {
-            return String.format("%s시간권 - %d원", duration, price);
-        }
-        if (passType == StudyCafePassType.WEEKLY) {
-            return String.format("%s주권 - %d원", duration, price);
-        }
-        if (passType == StudyCafePassType.FIXED) {
-            return String.format("%s주권 - %d원", duration, price);
-        }
-        return "";
+        return pass.display();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        StudyCafeLockerPass that = (StudyCafeLockerPass) obj;
+        return Objects.equals(passType, that.passType) && Objects.equals(pass.getDuration(), that.pass.getDuration());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(passType, pass.getDuration());
+    }
 }
