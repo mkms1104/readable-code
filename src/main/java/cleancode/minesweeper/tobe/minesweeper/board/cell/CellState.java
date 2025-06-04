@@ -29,5 +29,4 @@ public class CellState {
     public boolean isFlagged() {
         return isFlagged;
     }
-
 }

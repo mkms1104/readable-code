@@ -16,6 +16,10 @@ public enum StudyCafePassType {
         this.passDurationType = passDurationType;
     }
 
+    public boolean isUsableLocker() {
+        return this == StudyCafePassType.FIXED;
+    }
+
     public PassDurationType getPassDurationType() {
         return passDurationType;
     }

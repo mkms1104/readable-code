@@ -13,7 +13,7 @@ public class StudyCafePasses {
         return new StudyCafePasses(studyCafePasses);
     }
 
-    public List<StudyCafePass> getStudyCafePasses(StudyCafePassType studyCafePassType) {
+    public List<StudyCafePass> findStudyCafePassesBy(StudyCafePassType studyCafePassType) {
         return studyCafePasses.stream()
                     .filter(studyCafePass -> studyCafePass.getPassType() == studyCafePassType)
                     .toList();

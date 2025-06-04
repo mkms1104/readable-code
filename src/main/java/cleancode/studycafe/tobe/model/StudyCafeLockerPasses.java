@@ -13,7 +13,7 @@ public class StudyCafeLockerPasses {
         return new StudyCafeLockerPasses(studyCafeLockerPasses);
     }
 
-    public StudyCafeLockerPass findLockerPass(StudyCafePassType studyCafePassType, int duration) {
+    public StudyCafeLockerPass findLockerPassBy(StudyCafePassType studyCafePassType, int duration) {
         return studyCafeLockerPasses.stream()
             .filter(lockerPass ->
                 lockerPass.getPassType() == studyCafePassType

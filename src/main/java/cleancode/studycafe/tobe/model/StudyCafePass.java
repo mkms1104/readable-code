@@ -2,6 +2,8 @@ package cleancode.studycafe.tobe.model;
 
 import cleancode.studycafe.tobe.pass.Pass;
 
+import java.util.Objects;
+
 public class StudyCafePass {
 
     private final StudyCafePassType passType;
@@ -22,16 +24,16 @@ public class StudyCafePass {
         return discountRate > 0;
     }
 
+    public StudyCafePassType getPassType() {
+        return passType;
+    }
+
     public int getDiscountPrice() {
         return (int) (pass.getPrice() * discountRate);
     }
 
     public int getTotalPrice() {
         return pass.getPrice() - getDiscountPrice();
-    }
-
-    public StudyCafePassType getPassType() {
-        return passType;
     }
 
     public int getDuration() {
@@ -42,4 +44,20 @@ public class StudyCafePass {
         return pass.display();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        StudyCafePass that = (StudyCafePass) obj;
+        return Objects.equals(passType, that.passType) && Objects.equals(pass.getDuration(), that.pass.getDuration());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(passType, pass.getDuration());
+    }
 }
